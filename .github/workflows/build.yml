@@ -24,14 +24,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Download custom-keybinds headers
-        shell: bash
-        run: |
-          mkdir -p build/geode-deps/geode.custom-keybinds
-          curl -L "https://github.com/geode-sdk/custom-keybinds/releases/latest/download/geode.custom-keybinds.geode" -o ck.geode
-          unzip -o ck.geode -d build/geode-deps/geode.custom-keybinds
-          ls build/geode-deps/geode.custom-keybinds
-
       - name: Build the mod
         uses: geode-sdk/build-geode-mod@main
         with:
@@ -51,3 +43,4 @@ jobs:
         with:
           name: Build Output
           path: ${{ steps.build.outputs.build-output }}
+
