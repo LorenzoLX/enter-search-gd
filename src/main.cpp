@@ -1,16 +1,17 @@
 #include <Geode/Geode.hpp>
 #include <Geode/modify/LevelSearchLayer.hpp>
-#include <Geode/binding/LevelSearchLayer.hpp>
+#include <Geode/loader/Keybinds.hpp>
 using namespace geode::prelude;
+using namespace geode::keybinds;
 
 $execute {
-  BindManager::get()->registerBindable({
+  BindManager::get()->registerBindable(BindableAction(
     "enter-search"_spr,
     "Enter Search",
     "Search when you press enter in the level search page",
     { Keybind::create(KEY_Enter, Modifier::None) },
-    "Enter Search"
-  });
+    Category::GLOBAL
+  ));
 }
 
 class $modify(LevelSearchLayer) {
