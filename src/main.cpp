@@ -1,6 +1,6 @@
 #include <Geode/Geode.hpp>
 #include <Geode/modify/LevelSearchLayer.hpp>
-#include <geode.custom-keybinds/include/Keybinds.hpp>
+//#include <geode.custom-keybinds/include/Keybinds.hpp>
 
 using namespace geode::prelude;
 
@@ -34,3 +34,4 @@ class $modify(LevelSearchLayer){
     return true;
   }
 };
+
