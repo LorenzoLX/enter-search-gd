@@ -18,16 +18,14 @@
     "info": "If you find any bugs or have any suggestions, create an issue on github",
     "url": "https://github.com/iswilljr/enter-search-gd/issues"
   },
-  "dependencies": [
-    {
-      "id": "geode.custom-keybinds",
+  "dependencies": {
+    "geode.custom-keybinds": {
       "version": ">=v2.0.0",
       "importance": "required"
     },
-    {
-      "id": "geode.node-ids",
-      "version": ">=1.23.0",
+    "geode.node-ids": {
+      "version": ">=v1.23.0",
       "importance": "required"
     }
-  ]
+  }
 }
