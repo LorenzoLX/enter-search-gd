@@ -1,8 +1,7 @@
 #include <Geode/Geode.hpp>
 #include <Geode/modify/LevelSearchLayer.hpp>
-#include <geode.custom-keybinds/include/Keybinds.hpp>
+#include <Geode/binding/LevelSearchLayer.hpp>
 using namespace geode::prelude;
-using namespace keybinds;
 
 $execute {
   BindManager::get()->registerBindable({
@@ -19,7 +18,7 @@ class $modify(LevelSearchLayer) {
     if (!LevelSearchLayer::init(p0)) {
       return false;
     }
-    this->template addEventListener<InvokeBindFilter>([=, this](InvokeBindEvent* event) {
+    this->template addEventListener<InvokeBindFilter>([this](InvokeBindEvent* event) {
       auto levelSearch = CCDirector::get()->getRunningScene()->getChildByID("LevelSearchLayer");
       if (event->isDown() && levelSearch != nullptr) {
         this->onSearch(nullptr);
@@ -29,5 +28,3 @@ class $modify(LevelSearchLayer) {
     return true;
   }
 };
-
-
