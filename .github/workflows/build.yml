@@ -1,9 +1,9 @@
 name: Build Geode Mod
 
-on:
+#on:
   workflow_dispatch:
-  push:
-    branches:
+  #push:
+    #branches:
       - "**"
 
 jobs:
@@ -44,4 +44,5 @@ jobs:
         with:
           name: Build Output
           path: ${{ steps.build.outputs.build-output }}
+
 
