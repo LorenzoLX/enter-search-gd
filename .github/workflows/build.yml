@@ -5,13 +5,7 @@ on:
   push:
     branches:
       - "**"
-concurrency:
-  # Use github.run_id on main branch
-  # Use github.event.pull_request.number on pull requests, so it's unique per pull request
-  # Use github.ref on other branches, so it's unique per branch
-  group: ${{ github.workflow }}-${{ github.ref == 'refs/heads/main' && github.run_id || github.event.pull_request.number || github.ref }}
-  cancel-in-progress: true
-  
+
 jobs:
   build:
     strategy:
@@ -30,12 +24,19 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Download custom-keybinds headers
+        shell: bash
+        run: |
+          mkdir -p build/geode-deps/geode.custom-keybinds
+          curl -L "https://github.com/geode-sdk/custom-keybinds/releases/latest/download/geode.custom-keybinds.geode" -o ck.geode
+          unzip -o ck.geode -d build/geode-deps/geode.custom-keybinds
+          ls build/geode-deps/geode.custom-keybinds
+
       - name: Build the mod
         uses: geode-sdk/build-geode-mod@main
         with:
           sdk: nightly
           combine: true
-          target: ${{ matrix.config.target }}
 
   package:
     name: Package builds
@@ -50,6 +51,3 @@ jobs:
         with:
           name: Build Output
           path: ${{ steps.build.outputs.build-output }}
-
-
-
